@@ -21,7 +21,6 @@ main {
     gap: 1.5rem;
 }
 
-/* HERO SECTION */
 main section.hero {
     max-width: 600px;
 }
@@ -85,20 +84,3 @@ button:hover {
     transform: translateY(-4px);
 }
 
-/* SMALL SCREEN FIX */
-@media (max-width: 768px) {
-    main {
-        width: 92%;
-        padding: 2rem;
-        align-items: center;
-        text-align: center;
-    }
-
-    main section.hero {
-        max-width: 100%;
-    }
-
-    main h1 {
-        font-size: 2.2rem;
-    }
-}
