@@ -1,4 +1,3 @@
-
 const saveTask  = document.querySelector(".saveTask");
 const addTaskForm = document.querySelector(".addTaskForm");
 const taskName = document.querySelector(".taskName");
@@ -28,8 +27,20 @@ async function sendTask() {
             id: Date.now(),
             title: taskName.value,
             description: taskDescription.value,
+            createdAt: getDate(),
+            updatedAt: "",
+            status: "pending",
+            priority: "",
         }),
     });
     const data = await response.json();
     console.log(data);
+}
+
+function getDate() {
+    const date = new Date();
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
 }

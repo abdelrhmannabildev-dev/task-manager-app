@@ -12,8 +12,24 @@
     background-color: var(--color-surface);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    transition: .3s ease;
+    transition: .3s ease transform;
+    position: relative;
 }
 .taskCard:hover{
     transform: translateY(-3px);
+}
+.taskCard::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 1%;
+    width: 0;
+    height: 5px;
+    background-color: rgb(2, 13, 133);
+    border-radius: 12px;
+    transition: width 1s ease;
+}
+.taskCard:hover::before{
+    width: 98%;
+    height: 5px;
 }

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/privateTasks.css">
-    <link rel="stylesheet" href="../css/tasksUi.css">
+    <link rel="stylesheet" href="../css/taskPage.css">
     <title>Task Manger</title>
 </head>
 <body>
@@ -19,12 +20,24 @@
             </ul>
         </nav>
     </header>
-
+    <main>
+        <div class="taskDetails">
+            <div class="hero">
+                <button class="back" id="back"></button>
+                <div class="title"></div>
+                <div class="actions">
+                    <div class="edit" id="edit"></div>
+                    <div class="delete" id="delete"></div>
+                </div>
+            </div>
+            <div class="details"></div>
+            <div class="notes"></div>
+        </div>
+    </main>
     <footer>
         <p>&copy; <script>document.write(new Date().getFullYear());</script> Task Manger. All rights reserved.</p>
     </footer>
-    <script type="module" src="../js/tasks/addTaskUi.js"></script>
-    <script src="../js/tasks/addTask.js"></script>
-    <script type="module" src="../js/tasks/dashboardUi.js"></script>
+    <!-- <script type="module" src="../js/tasks/taskPageUi.js"></script> -->
+    <script type="module" src="../js/tasks/taskPage.js"></script>
 </body>
 </html>
