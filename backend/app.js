@@ -8,7 +8,12 @@ const app = express();
 app.use(express.json());
 
 // serve frontend files
-app.use(express.static("./frontend"));
+
+app.use(express.static("../frontend"));
+
+app.get('/', (req, res) => {
+    res.sendFile("../frontend/index.html");
+});
 
 // API route
 app.post("/api/tasks", (req, res) => {

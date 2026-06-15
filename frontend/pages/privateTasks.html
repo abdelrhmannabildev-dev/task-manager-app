@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/privateTasks.css">
+    <link rel="stylesheet" href="../css/tasksUi.css">
+    <title>Task Manger</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="privateTasks.html">Your Tasks</a></li>
+                <li><a href="publicTasks.html">Company Tasks</a></li>
+                <li><a href="auth.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Private Tasks</h1>
+            <p>Welcome to your Task Manger</p>
+            <p>You can manage your tasks here</p>
+        </section>
+        <div class="tasksContainer"></div>
+        <div class="addTaskForm hidden">
+            <h2>Add Task</h2>
+            <form action="">
+            <input type="text" placeholder="Task Name" class="taskName">
+            <input type="text" placeholder="Task Description" class="taskDescription">
+            <button class="saveTask" type="submit">Save Task</button>
+            </form>
+            <button class="cancelTask">Cancel</button>
+
+        </div>
+        <div class="addTask">
+            <button class="addTask">Add Task</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear());</script> Task Manger. All rights reserved.</p>
+    </footer>
+    <script type="module" src="../js/tasks/addTaskUi.js"></script>
+    <script src="../js/tasks/addTask.js"></script>
+    <script type="module" src="../js/tasks/dashboardUi.js"></script>
+</body>
+</html>
