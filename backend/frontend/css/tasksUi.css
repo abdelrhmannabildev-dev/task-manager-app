@@ -1,0 +1,19 @@
+.tasksContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+.taskCard{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: var(--color-surface);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: .3s ease;
+}
+.taskCard:hover{
+    transform: translateY(-3px);
+}
