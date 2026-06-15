@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <title>Task Manger</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="privateTasks.html">Your Tasks</a></li>
+                <li><a href="publicTasks.html">Company Tasks</a></li>
+                <li><a href="auth.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <button class="togglebtn">Log in</button>
+        <div class="auth logInGroup hidden">
+            <h2>Log in</h2>
+            <form action="" class="login">
+                <label for="id">employee ID</label>
+                <input type="text" name="id" >
+                <label for="password">password</label>
+                <input type="password" name="password">
+                <button type="submit">Log in</button>
+
+            </form>
+        </div>
+        <div class="auth signInGroup hidden">
+            <h2>Sign in</h2>
+            <form action="" class="signin">
+                <label for="id">employee ID</label>
+                <input type="text" name="id" >
+                <label for="password">password</label>
+                <input type="password" name="password">
+                <label for="password">confirm password</label>
+                <input type="password" name="password">
+                <label for="email">email</label>
+                <input type="email" name="email">
+                <button type="submit">Create Account</button>
+
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear());</script> Task Manger. All rights reserved.</p>
+    </footer>
+    <script src="../js/auth/authUi.js"></script>
+</body>
+</html>
