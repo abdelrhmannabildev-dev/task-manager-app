@@ -1,104 +1,165 @@
 .add{
-    padding: 12px 24px;
-    background: var(--color-primary);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: .3s ease;
+    padding:12px 24px;
+
+    background:var(--color-primary);
+    color:white;
+
+    border:none;
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s ease;
 }
 
 .add:hover{
-    background: var(--color-primary-dark);
-    transform: translateY(-3px);
+    background:var(--color-primary-dark);
+    transform:translateY(-3px);
 }
 
+/* =========================
+   MODAL BACKDROP
+========================= */
+
 .addTaskForm{
-    position: fixed;
-    left: 50%;
-    top: 50%;
+    position:fixed;
 
-    width: min(500px, 90vw);
+    left:50%;
+    top:50%;
 
-    background: var(--color-surface);
+    transform:translate(-50%, -50%);
 
-    border-radius: 20px;
-    padding: 2rem;
+    width:min(500px, 90vw);
 
-    box-shadow:
-        0 25px 50px rgba(0,0,0,.15);
+    background:var(--color-surface);
 
-    z-index: 1000;
+    border-radius:20px;
 
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    padding:2rem;
 
-    transform: translate(-50%, -50%);
+    box-shadow:0 25px 50px rgba(0,0,0,.15);
 
-    transition:
-        opacity .3s ease,
-        transform .3s ease,
-        visibility .3s ease;
+    z-index:1000;
+
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+    transition:.3s ease;
 }
 
 .hidden{
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
 
-    transform: translate(-50%, -45%);
+    transform:translate(-50%, -45%);
 }
+
+/* =========================
+   FORM
+========================= */
 
 .addTaskForm form{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1.5rem;
+    display:flex;
+    flex-direction:column;
+
+    gap:1rem;
+
+    margin-top:1.5rem;
 }
+
 .addTaskForm input{
-    width: 100%;
-    padding: .9rem 1rem;
+    width:100%;
 
-    border: 1px solid #ddd;
-    border-radius: 12px;
+    padding:.9rem 1rem;
 
-    font-size: 1rem;
-    outline: none;
+    border:1px solid rgba(0,0,0,.1);
+    border-radius:12px;
 
-    transition: .2s ease;
+    font-size:1rem;
+
+    outline:none;
+
+    background:rgba(255,255,255,.5);
+
+    transition:.2s ease;
 }
 
 .addTaskForm input:focus{
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 4px rgba(99,102,241,.15);
+    border-color:var(--color-primary);
+
+    box-shadow:0 0 0 4px rgba(3,4,94,.15);
 }
+
+/* =========================
+   BUTTONS
+========================= */
+
 .saveTask,
 .cancelTask{
-    padding: .9rem;
-    border: none;
-    border-radius: 12px;
+    padding:.9rem;
 
-    cursor: pointer;
-    font-size: 1rem;
+    border:none;
+    border-radius:12px;
 
-    transition: .2s ease;
+    cursor:pointer;
+
+    font-size:1rem;
+
+    transition:.2s ease;
 }
 
 .saveTask{
-    background: var(--color-primary);
-    color: white;
+    background:var(--color-primary);
+    color:white;
 }
 
 .saveTask:hover{
-    transform: translateY(-2px);
+    transform:translateY(-2px);
 }
 
 .cancelTask{
-    margin-top: 5px;
-    background: #eee;
+    background:#eaeaea;
+    margin-top:5px;
 }
 
 .cancelTask:hover{
-    background: #ddd;
+    background:#dcdcdc;
+}
+
+.priorityGroup{
+    display:flex;
+    gap:1rem;
+}
+
+.priorityGroup input{
+    display:none;
+}
+
+.priorityGroup label{
+    flex:1;
+
+    padding:.8rem;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    border-radius:12px;
+
+    background:var(--color-surface-soft);
+
+    transition:.3s ease;
+}
+
+.priorityGroup label:hover{
+    transform:translateY(-2px);
+}
+
+.priorityGroup input:checked + label{
+    background:var(--color-primary);
+    color:white;
+
+    transform:translateY(-2px);
 }

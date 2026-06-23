@@ -18,6 +18,8 @@ saveTask.addEventListener("click", (e) => {
 
 
 async function sendTask() {
+    const priority = document.querySelector('input[name="priority"]:checked');
+    console.log(priority);
     const response = await fetch("/api/tasks", {
         method: "POST",
         headers: {
@@ -30,7 +32,8 @@ async function sendTask() {
             createdAt: getDate(),
             updatedAt: "",
             status: "pending",
-            priority: "",
+            priority: priority?priority.value:"medium",
+            notes: "",
         }),
     });
     const data = await response.json();

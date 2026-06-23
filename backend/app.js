@@ -1,11 +1,26 @@
 const express = require("express");
-const fs = require("fs");
+const fs = require("fs").promises;
 const path = require("path");
-const { json } = require("stream/consumers");
 
 const app = express();
 
 app.use(express.json());
+const DATA_PATH = path.join(__dirname, "data", "tasks.json");
+
+async function readTasksFromFile() {
+    try {
+        const data = await fs.readFile(DATA_PATH, "utf8");
+        return JSON.parse(data);
+    } catch (error) {
+        if (error.code === "ENOENT") {
+            return [];
+        }     throw error;
+    }
+}
+
+async function writeTasksToFile(tasks) {
+    await fs.writeFile(DATA_PATH, JSON.stringify(tasks, null, 2), "utf8");
+}
 
 // serve frontend files
 
@@ -16,60 +31,88 @@ app.get('/', (req, res) => {
 });
 
 // API route
-app.post("/api/tasks", (req, res) => {
-    console.log(req.body);
-    let tasks=[];
-    if (fs.existsSync("./data/tasks.json")) {
-        tasks = JSON.parse(fs.readFileSync("./data/tasks.json"));
+app.post("/api/tasks", async (req, res) => {
+    try {
+        console.log(req.body);
+        const tasks = await readTasksFromFile();
+        
+        tasks.push(req.body);
+        
+        await writeTasksToFile(tasks);
+        res.status(200).json({ message: "Task saved successfully" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to save task" });
     }
-    tasks.push(req.body);
-    fs.writeFile(
-        "./data/tasks.json",
-        JSON.stringify(tasks, null, 2),
-        (err) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).json({ error: "Failed to save task" });
-            }
+});
 
-            res.status(200).json({ message: "Task saved successfully" });
+
+app.get("/api/tasks", async (req, res) => {
+    try {
+        const tasks = await readTasksFromFile();
+        res.status(200).json(tasks);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to fetch tasks" });
+    }
+});
+
+app.get("/api/tasks/:id", async (req, res) => {
+    try {
+        const taskId = parseInt(req.params.id);
+        const tasks = await readTasksFromFile();
+        
+        const task = tasks.find((t) => t.id === taskId);
+        if (!task) {
+            return res.status(404).json({ error: "Task not found" });
         }
-    );
-});
-app.get("/api/tasks",(req,res)=>{
-    let tasks=[]
-    if (fs.existsSync("./data/tasks.json")) {
-        tasks = JSON.parse(fs.readFileSync("./data/tasks.json"));
-        console.log(JSON.stringify(tasks))
+        
+        res.status(200).json(task);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to fetch task" });
     }
-    res.status(200).json(tasks)
-})
-
-app.get("/api/tasks/:id", (req, res) => {
-    const taskId = parseInt(req.params.id);
-    let tasks = [];
-    if (fs.existsSync("./data/tasks.json")) {
-        tasks = JSON.parse(fs.readFileSync("./data/tasks.json"));
-    }
-    const task = tasks.find((task) => task.id === taskId);
-    if (!task) {
-        return res.status(404).json({ error: "Task not found" });
-    }
-    res.status(200).json(task);
-    console.log(task);
 });
 
-app.delete("/api/tasks/:id", (req, res) => {
-    const taskId = parseInt(req.params.id);
-    let tasks = [];
-    if (fs.existsSync("./data/tasks.json")) {
-        tasks = JSON.parse(fs.readFileSync("./data/tasks.json"));
+app.delete("/api/tasks/:id", async (req, res) => {
+    try {
+        const taskId = parseInt(req.params.id);
+        let tasks = await readTasksFromFile();
+        
+        tasks = tasks.filter((t) => t.id !== taskId);
+        
+        await writeTasksToFile(tasks);
+        res.status(200).json({ message: "Task deleted successfully" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to delete task" });
     }
-    tasks=tasks.filter((task) => task.id !== taskId);
-
-    fs.writeFileSync("./data/tasks.json", JSON.stringify(tasks, null, 2));
-    res.status(200).json({ message: "Task deleted successfully" });
 });
+
+app.patch("/api/tasks/:id", async (req, res) => {
+    try {
+        const taskId = parseInt(req.params.id);
+        let tasks = await readTasksFromFile();
+        
+        const task = tasks.find((t) => t.id === taskId);
+        if (!task) {
+            return res.status(404).json({ error: "Task not found" });
+        }
+        
+        // تعديل البيانات المستقبلة فقط
+        task.title = req.body.title || task.title;
+        task.description = req.body.description || task.description;
+        task.notes = req.body.notes || task.notes;
+        task.priority = req.body.priority || task.priority;
+        
+        await writeTasksToFile(tasks);
+        res.status(200).json({ message: "Task updated successfully" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to update task" });
+    }
+});
+
 
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");

@@ -30,8 +30,33 @@
                     <div class="delete" id="delete"></div>
                 </div>
             </div>
-            <div class="details"></div>
+            <div class="taskBody">
+                <div class="description"></div>
+                <div class="status"></div>
+                <div class="priority"></div>
+                <div class="date"></div>
+
+            </div>
             <div class="notes"></div>
+        </div>
+        <div class="editForm hidden">
+            <form class="form">
+                <input type="text" placeholder="Task Name" class="taskName">
+                <input type="text" placeholder="Task Description" class="taskDescription">
+                <input type="text" placeholder="Task Notes" class="taskNotes">
+                <div class="priorityGroup">
+                    <input type="radio" name="priority" id="low" value="low">
+                    <label for="low">Low</label>
+
+                    <input type="radio" name="priority" id="medium" value="medium">
+                    <label for="medium">Medium</label>
+
+                    <input type="radio" name="priority" id="high" value="high">
+                    <label for="high">High</label>
+                </div>
+                <button class="saveTask" type="submit">Save Task</button>
+                <button class="cancel">Cancel</button>
+            </form>
         </div>
     </main>
     <footer>

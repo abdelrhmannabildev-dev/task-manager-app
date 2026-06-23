@@ -9,8 +9,8 @@ function renderTasks(tasks) {
     taskDiv.classList.add("taskCard");
     taskDiv.dataset.id = task.id;
     taskDiv.innerHTML = `
-        <h2>${task.title}</h2>
-        <p>${task.description}</p>
+        <h3 class="taskTitle">${task.title}</h3>
+        <p class="taskDescription">${task.description}</p>
     `;
     tasksContainer.appendChild(taskDiv);
     });
