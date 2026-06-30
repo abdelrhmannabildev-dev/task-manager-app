@@ -22,27 +22,27 @@
         <button class="togglebtn">Log in</button>
         <div class="auth logInGroup hidden">
             <h2>Log in</h2>
-            <form action="" class="login">
-                <label for="id">employee ID</label>
-                <input type="text" name="id" >
-                <label for="password">password</label>
-                <input type="password" name="password">
-                <button type="submit">Log in</button>
+            <form  class="login">
+                <label for="username">user name</label>
+                <input type="text" name="username" class="loginUser" >
+                <label for="password" >password</label>
+                <input type="password" name="password" class="loginPassword">
+                <button type="submit" class="loginSubmit">Log in</button>
 
             </form>
         </div>
-        <div class="auth signInGroup hidden">
+        <div class="auth registerGroup hidden">
             <h2>Sign in</h2>
-            <form action="" class="signin">
-                <label for="id">employee ID</label>
-                <input type="text" name="id" >
+            <form  class="register">
+                <label for="username" >user name</label>
+                <input type="text" name="username" class="registrationUser" >
                 <label for="password">password</label>
-                <input type="password" name="password">
+                <input type="password" name="password" class="registrationPassword" >
                 <label for="password">confirm password</label>
-                <input type="password" name="password">
-                <label for="email">email</label>
-                <input type="email" name="email">
-                <button type="submit">Create Account</button>
+                <input type="password" name="password" class="registrationConfirm">
+                <!-- <label for="email">email</label>
+                <input type="email" name="email"> -->
+                <button type="submit" class="registerSubmit">Create Account</button>
 
             </form>
         </div>
@@ -51,5 +51,6 @@
         <p>&copy; <script>document.write(new Date().getFullYear());</script> Task Manger. All rights reserved.</p>
     </footer>
     <script src="../js/auth/authUi.js"></script>
+    <script src="../js/auth/auth.js"></script>
 </body>
 </html>

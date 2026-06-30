@@ -1,5 +1,5 @@
 const logInGroup = document.querySelector(".logInGroup");
-const signInGroup = document.querySelector(".signInGroup");
+const signInGroup = document.querySelector(".registerGroup ");
 const togglebtn = document.querySelector(".togglebtn");
 const page = localStorage.getItem("page")||"login";
 

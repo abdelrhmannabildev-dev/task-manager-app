@@ -1,5 +1,8 @@
 export async function getAllTasks() {
-    const response = await fetch("/api/tasks");
+    const response = await fetch("http://localhost:3000/api/tasks",{
+        method:"GET",
+        credentials: "include"
+    });
 
     if (!response.ok) {
         throw new Error("API Error");
@@ -9,7 +12,7 @@ export async function getAllTasks() {
 }
 
 export async function getTask(id) {
-    const response = await fetch(`/api/tasks/${id}`);
+    const response = await fetch(`http://localhost:3000/api/tasks/${id}`);
 
     if (!response.ok) {
         throw new Error("API Error");

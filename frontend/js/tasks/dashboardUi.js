@@ -1,9 +1,10 @@
 import { getAllTasks } from "./getTasks.js";
 
 const tasks= await getAllTasks();
-
+const saveTask  = document.querySelector(".saveTask");
 const tasksContainer = document.querySelector(".tasksContainer");
-function renderTasks(tasks) {
+async function renderTasks() {
+    tasksContainer.innerHTML = "";
     tasks.forEach((task) => {
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("taskCard");
@@ -16,7 +17,21 @@ function renderTasks(tasks) {
     });
 
 }
-renderTasks(tasks);
+renderTasks();
+
+saveTask.addEventListener("click",async (e) => {
+    e.preventDefault();
+    if (!taskName.value.trim()) {
+        alert("Task name is required");
+        return;
+    }   
+    sendTask();
+    taskName.value = "";
+    taskDescription.value = "";
+    addTaskForm.classList.add("hidden");
+    window.location.reload();
+
+});
 
 tasksContainer.addEventListener("click", (e) => {
     const taskCard = e.target.closest(".taskCard");

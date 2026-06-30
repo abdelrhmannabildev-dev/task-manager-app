@@ -3,41 +3,25 @@ const addTaskForm = document.querySelector(".addTaskForm");
 const taskName = document.querySelector(".taskName");
 const taskDescription = document.querySelector(".taskDescription");
 
-saveTask.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (!taskName.value.trim()) {
-        alert("Task name is required");
-        return;
-    }   
-    sendTask();
-    taskName.value = "";
-    taskDescription.value = "";
-    addTaskForm.classList.add("hidden");
-    location.reload();
-});
 
 
 async function sendTask() {
     const priority = document.querySelector('input[name="priority"]:checked');
-    console.log(priority);
-    const response = await fetch("/api/tasks", {
+    const response = await fetch("http://localhost:3000/api/tasks", {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id: Date.now(),
             title: taskName.value,
             description: taskDescription.value,
-            createdAt: getDate(),
-            updatedAt: "",
-            status: "pending",
+            status: "in_progress",
             priority: priority?priority.value:"medium",
             notes: "",
         }),
     });
     const data = await response.json();
-    console.log(data);
 }
 
 function getDate() {

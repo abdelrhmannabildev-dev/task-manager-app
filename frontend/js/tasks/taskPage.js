@@ -9,6 +9,7 @@ const title = document.querySelector(".title");
 const priority = document.querySelector(".priority");
 const date = document.querySelector(".date");
 const status = document.querySelector(".status");
+const created_at=document.querySelector(".date")
 // actions
 const back = document.querySelector("#back");
 const edit = document.querySelector("#edit");
@@ -21,13 +22,13 @@ const newTaskName = document.querySelector(".taskName");
 const newTaskDescription = document.querySelector(".taskDescription");
 const newTaskNotes = document.querySelector(".taskNotes");
 
-
+console.log(task)
 // actions
 back.addEventListener("click", () => {
     history.back();
 });
 del.addEventListener("click", () => {
-    fetch(`/api/tasks/${taskId}`, {
+    fetch(`http://localhost:3000/api/tasks/${taskId}`, {
         method: "DELETE",
     }).then(() => {
         window.location.href = "privateTasks.html";
@@ -44,15 +45,15 @@ saveTask.addEventListener("click", (e) => {
         'input[name="priority"]:checked'
     );
 
-    fetch(`/api/tasks/${taskId}`, {
-        method: "PATCH",
+    fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            title: newTaskName.value,
-            description: newTaskDescription.value,
-            notes: newTaskNotes.value,
+            title: newTaskName.value||task.title,
+            description: newTaskDescription.value||task.description,
+            notes: newTaskNotes.value||task.notes,
             priority: newTaskPriority?newTaskPriority.value:task.priority
         })
     })
@@ -95,4 +96,11 @@ date.textContent = task.createdAt;
 status.textContent = task.status;
 notes.textContent = task.notes;
 title.textContent = task.title;
-
+created_at.textContent=new Date(task.created_at).toLocaleString("en-GB", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+})
+status.textContent= task.status==="in_progress"?"in progress":task.status
